@@ -6,3 +6,5 @@ const server = express();
 
 server.use(router);
 server.use(cors)
+
+export { server };
