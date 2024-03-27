@@ -35,7 +35,7 @@ export const tenantUserSchema = new mongoose.Schema(
 			type: Date,
 			default: Date.now,
 		},
-		forms: {
+		projects: {
 			type: [mongoose.Schema.Types.ObjectId],
 			required: false,
 		},
