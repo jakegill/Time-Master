@@ -1,8 +1,8 @@
-import { setupDatabase } from './config/mongo';
-import { server } from './config/server';
+import { server } from "./config/server.config";
+import { PORT } from "./config/constants.config";
+import { connectAllDb } from "./services/tenancy/connectionManager";
 
-setupDatabase();
-
-server.listen(process.env.PORT || 8000, () => {
-  console.log('Server is running on port 8000');
+server.listen(PORT, async () => {
+	console.log(`Server is running on port ${PORT}`);
+	await connectAllDb();
 });

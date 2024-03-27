@@ -1,36 +1,23 @@
 import { Router } from "express";
+import { authMiddleware } from "../middleware/auth.middleware";
+import { resolveTenancy } from "../middleware/resolveTenancy.middleware";
+import { resolveRole } from "../middleware/resolveRole.middleware";
+import { createTenantController } from "../controllers/tenancy/createTenant.controller";
+import { loginUserController } from "../controllers/auth/loginUser.controller";
+import { registerUserController } from "../controllers/auth/registerUser.controller";
+
 
 const router = Router();
 
-//Auth
-router.post("/api/auth/login");
-router.post("/api/auth/register");
+/* ---------- Tenant Management ---------- */
 
-//User Management
-router.get("/api/users");
-router.put("/api/users/:userId");
+router.post("/api/v1/tenants", authMiddleware, resolveRole, createTenantController);
 
-//Project Management
-router.get("/api/project");
-router.post("/api/project");
+/* ---------- Authentication ---------- */
 
-router.get("/api/project/:projectId");
-router.put("/api/project/:projectId");
-router.delete("/api/project/:projectId");
+router.post("/api/v1/auth/login", loginUserController);
+router.post("/api/v1/auth/register", authMiddleware, resolveTenancy, resolveRole, registerUserController);
 
-//Project User Assignment and Management
-router.post("/api/project/:projectId/assign");
-router.post("/api/project/:projectId/remove");
-router.post("/api/project/:projectId/promote/:userId");
 
-//Project Timelog Management
-router.get("/api/project/:projectId/timelog");
-router.post("/api/project/:projectId/timelog");
-
-router.get("/api/project/:projectId/timelog/:userId");
-
-router.get("/api/project/:projectId/timelog/:userId/:timelogId");
-router.put("/api/project/:projectId/timelog/:userId/:timelogId");
-router.delete("/api/project/:projectId/timelog/:userId/:timelogId");
 
 export { router };
