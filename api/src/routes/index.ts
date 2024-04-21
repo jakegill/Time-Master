@@ -10,6 +10,7 @@ import { getAllProjectsController } from "../controllers/projects/getAllProjects
 import { assignProjectController } from "../controllers/projects/assignProject.controller";
 import { getEmployeesController } from "../controllers/employees/getEmployees.controller";
 import { getProjectsController } from "../controllers/projects/getProjects.controller";
+import { clockInController } from "../controllers/projects/clockIn.controller";
 
 
 const router = Router();
@@ -28,6 +29,9 @@ router.post("/api/v1/auth/register", authMiddleware, resolveTenancy, resolveRole
 router.post("/api/v1/projects", authMiddleware, resolveTenancy, resolveRole, createProjectController);
 router.get("/api/v1/projects", authMiddleware, resolveTenancy, resolveRole, getAllProjectsController);
 router.post("/api/v1/projects/assign", authMiddleware, resolveTenancy, resolveRole, assignProjectController);
+router.post("/api/v1/projects/clock-in/", authMiddleware, resolveTenancy, resolveRole, clockInController);
+//router.post("/api/v1/projects/clock-out/", authMiddleware, resolveTenancy, resolveRole, clockOutController);
+
 
 /* ---------- Employees ---------- */
 
