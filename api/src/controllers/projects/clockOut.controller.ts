@@ -1,9 +1,9 @@
 import type { Request, Response } from "express";
-import { clockIn } from "../../services/timelogs/clockIn";
+import { clockOut } from "../../services/timelogs/clockOut";
 import { Project } from "../../types/project";
 import { User } from "../../types/user";
 
-const clockInController = async (req: Request, res: Response) => {
+const clockOutController = async (req: Request, res: Response) => {
 	
 	const tenantName = req.tenantName;
 	const userId = req.userId;
@@ -15,11 +15,11 @@ const clockInController = async (req: Request, res: Response) => {
 	}
 
 	try {
-		await clockIn(projectId, userId, tenantName);
-		res.json({ status: 201, message: "Employee clocked in." });
+		await clockOut(projectId, userId, tenantName);
+		res.json({ status: 201, message: "Employee clocked out." });
 	} catch (error) {
 		res.json({ status: 500, message: error });
 	}
 };
 
-export { clockInController };
+export { clockOutController };

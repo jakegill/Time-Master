@@ -1,4 +1,5 @@
 import mongoose from "mongoose";
+import { timelogSchema } from "./timelog.model";
 
 export const projectSchema = new mongoose.Schema({
 	tenantName: {
@@ -18,6 +19,7 @@ export const projectSchema = new mongoose.Schema({
 		type: [mongoose.Schema.Types.ObjectId],
 		ref: "User",
 	},
+	timelogs: [timelogSchema],
 	createdAt: {
 		type: Date,
 		default: Date.now,

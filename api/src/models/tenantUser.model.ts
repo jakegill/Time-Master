@@ -1,4 +1,5 @@
 import mongoose from "mongoose";
+import { timelogSchema } from "./timelog.model";
 
 export const tenantUserSchema = new mongoose.Schema(
 	{
@@ -39,6 +40,7 @@ export const tenantUserSchema = new mongoose.Schema(
 			type: [mongoose.Schema.Types.ObjectId],
 			required: false,
 		},
+		timelogs: [timelogSchema]
 	},
 	{ strict: false }
 );

@@ -1,11 +1,11 @@
 import type { Request, Response } from "express";
 import { getProjects } from "../../services/projects/getProjects";
 
-// Get the all the forms assigned to a specific employee.
+// Get the all the projects assigned to a specific employee.
 
 const getProjectsController = async (req: Request, res: Response) => {
 	const tenantName = req.tenantName;
-	const employeeId = req.userId;
+	const employeeId = req.params.employeeId;
 
 	console.log("Attempting to get projects for ", employeeId);
 
