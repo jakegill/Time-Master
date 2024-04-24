@@ -1,9 +1,12 @@
-Instructions
+### Instructions
 
 contact Jake for .env variables.
 
-cd api
+install all dependencies and run project using the following commands.
 
+```bash
+cd api
 npm install
 npm run build
 npm run start
+```
